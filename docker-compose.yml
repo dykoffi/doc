@@ -1,0 +1,41 @@
+version: "3.9" # optional since v1.27.0
+services:
+  doc:
+      image: dykoffi/doc:1.0.0
+      container_name: doc
+      environment:
+        - DATABASE_URL=postgres://doc_user:8385@doc_db_staging/doc_db_staging
+      depends_on:
+        - doc_db_staging
+      ports:
+        - 35806:8888
+
+  doc_db_dev:
+    image: postgres
+    container_name: doc_db_dev
+    environment:
+      - POSTGRES_USER=doc_user
+      - POSTGRES_DB=doc_db_dev
+      - POSTGRES_PASSWORD=8385
+    ports:
+      - 63924:5432
+
+  doc_db_test:
+    image: postgres
+    container_name: doc_db_test
+    environment:
+      - POSTGRES_USER=doc_user
+      - POSTGRES_DB=doc_db_test
+      - POSTGRES_PASSWORD=8385
+    ports:
+      - 15933:5432
+
+  doc_db_staging:
+    image: postgres
+    container_name: doc_db_staging
+    environment:
+      - POSTGRES_USER=doc_user
+      - POSTGRES_DB=doc_db_staging
+      - POSTGRES_PASSWORD=8385
+    ports:
+      - 16904:5432
