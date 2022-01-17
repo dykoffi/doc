@@ -2,4 +2,4 @@ scenarios:
   - name: "Test"
     flow:
       - get:
-          url: "/"
+          url: "/memoire"
